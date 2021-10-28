@@ -33,3 +33,11 @@ namespace EntityLayer.Concreate
 }
 
 
+//Standartlar
+//  public Employee Employee { get; set; }
+//public int CreateBy_ID { get; set; }
+//public DateTime Create_Date { get; set; }
+//public int UpdateBy_ID { get; set; }
+//public DateTime Update_Date { get; set; }
+//public bool IsDelete { get; set; }
+//public bool IsActive { get; set; }
