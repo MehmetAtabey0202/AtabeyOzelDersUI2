@@ -33,7 +33,7 @@ namespace EntityLayer.Concreate
 }
 
 
-//Standartlar
+//Standartlar deneme
 //  public Employee Employee { get; set; }
 //public int CreateBy_ID { get; set; }
 //public DateTime Create_Date { get; set; }
