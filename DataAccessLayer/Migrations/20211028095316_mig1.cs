@@ -74,6 +74,34 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Seasons",
+                columns: table => new
+                {
+                    Season_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Season_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Season_Kode = table.Column<int>(type: "int", nullable: false),
+                    Season_WeekOfNumber = table.Column<int>(type: "int", nullable: false),
+                    Minimum_Advance_Rate = table.Column<int>(type: "int", nullable: false),
+                    Max_Installment = table.Column<int>(type: "int", nullable: false),
+                    Season_Start_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Season_End_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Season_StartOfEdication = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Season_End_Installment = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Season_Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateBy_ID = table.Column<int>(type: "int", nullable: false),
+                    Create_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateBy_ID = table.Column<int>(type: "int", nullable: false),
+                    Update_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Seasons", x => x.Season_ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Countries",
                 columns: table => new
                 {
@@ -125,6 +153,40 @@ namespace DataAccessLayer.Migrations
                         column: x => x.GeneralCenter_ID,
                         principalTable: "GeneralCenters",
                         principalColumn: "GeneralCenter_ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EducationAreas",
+                columns: table => new
+                {
+                    EducationArea_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Season_ID = table.Column<int>(type: "int", nullable: true),
+                    EducationAreaType_ID = table.Column<int>(type: "int", nullable: true),
+                    EducationArea_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EducationArea_Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateBy_ID = table.Column<int>(type: "int", nullable: false),
+                    Create_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateBy_ID = table.Column<int>(type: "int", nullable: false),
+                    Update_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationAreas", x => x.EducationArea_ID);
+                    table.ForeignKey(
+                        name: "FK_EducationAreas_EducationAreaTypes_EducationAreaType_ID",
+                        column: x => x.EducationAreaType_ID,
+                        principalTable: "EducationAreaTypes",
+                        principalColumn: "EducationAreaType_ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EducationAreas_Seasons_Season_ID",
+                        column: x => x.Season_ID,
+                        principalTable: "Seasons",
+                        principalColumn: "Season_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -257,35 +319,6 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Seasons",
-                columns: table => new
-                {
-                    Season_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Branch_ID = table.Column<int>(type: "int", nullable: true),
-                    Season_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Season_Kode = table.Column<int>(type: "int", nullable: false),
-                    Season_WeekOfNumber = table.Column<int>(type: "int", nullable: false),
-                    Minimum_Advance_Rate = table.Column<int>(type: "int", nullable: false),
-                    Max_Installment = table.Column<int>(type: "int", nullable: false),
-                    Season_Start_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Season_End_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Season_StartOfEdication = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Season_End_Installment = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Season_Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreateBy_ID = table.Column<int>(type: "int", nullable: false),
-                    Create_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateBy_ID = table.Column<int>(type: "int", nullable: false),
-                    Update_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Seasons", x => x.Season_ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Branches",
                 columns: table => new
                 {
@@ -336,40 +369,6 @@ namespace DataAccessLayer.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Branches_Seasons_Season_ID",
-                        column: x => x.Season_ID,
-                        principalTable: "Seasons",
-                        principalColumn: "Season_ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EducationAreas",
-                columns: table => new
-                {
-                    EducationArea_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Season_ID = table.Column<int>(type: "int", nullable: true),
-                    EducationAreaType_ID = table.Column<int>(type: "int", nullable: true),
-                    EducationArea_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EducationArea_Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreateBy_ID = table.Column<int>(type: "int", nullable: false),
-                    Create_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateBy_ID = table.Column<int>(type: "int", nullable: false),
-                    Update_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EducationAreas", x => x.EducationArea_ID);
-                    table.ForeignKey(
-                        name: "FK_EducationAreas_EducationAreaTypes_EducationAreaType_ID",
-                        column: x => x.EducationAreaType_ID,
-                        principalTable: "EducationAreaTypes",
-                        principalColumn: "EducationAreaType_ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EducationAreas_Seasons_Season_ID",
                         column: x => x.Season_ID,
                         principalTable: "Seasons",
                         principalColumn: "Season_ID",
@@ -450,70 +449,33 @@ namespace DataAccessLayer.Migrations
                 name: "IX_Provinces_Area_ID",
                 table: "Provinces",
                 column: "Area_ID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Seasons_Branch_ID",
-                table: "Seasons",
-                column: "Branch_ID");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Seasons_Branches_Branch_ID",
-                table: "Seasons",
-                column: "Branch_ID",
-                principalTable: "Branches",
-                principalColumn: "Branch_ID",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Areas_Countries_Country_ID",
-                table: "Areas");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Branches_Districts_District_ID",
-                table: "Branches");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Employees_Districts_District_ID",
-                table: "Employees");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Branches_Employees_Employee_ID1",
-                table: "Branches");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Branches_Provinces_Province_ID",
-                table: "Branches");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Branches_Seasons_Season_ID",
-                table: "Branches");
+            migrationBuilder.DropTable(
+                name: "Branches");
 
             migrationBuilder.DropTable(
                 name: "EducationAreas");
 
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "EducationAreaTypes");
 
             migrationBuilder.DropTable(
-                name: "Countries");
-
-            migrationBuilder.DropTable(
-                name: "Districts");
-
-            migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Seasons");
 
             migrationBuilder.DropTable(
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Professions");
+                name: "Districts");
 
             migrationBuilder.DropTable(
-                name: "GeneralCenters");
+                name: "Professions");
 
             migrationBuilder.DropTable(
                 name: "Provinces");
@@ -522,10 +484,10 @@ namespace DataAccessLayer.Migrations
                 name: "Areas");
 
             migrationBuilder.DropTable(
-                name: "Seasons");
+                name: "Countries");
 
             migrationBuilder.DropTable(
-                name: "Branches");
+                name: "GeneralCenters");
         }
     }
 }
