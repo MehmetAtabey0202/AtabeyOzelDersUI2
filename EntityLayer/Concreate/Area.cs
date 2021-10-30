@@ -31,8 +31,9 @@ namespace EntityLayer.Concreate
         public ICollection<Province> Provinces { get; set; }
     }
 }
-
-
+/*
+ * jsjkjsskjsjk
+ */
 //Standartlar deneme
 //  public Employee Employee { get; set; }
 //public int CreateBy_ID { get; set; }
