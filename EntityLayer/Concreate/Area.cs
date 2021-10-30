@@ -31,7 +31,9 @@ namespace EntityLayer.Concreate
         public ICollection<Province> Provinces { get; set; }
     }
 }
-
+/*
+ * Mehmet tarafından oluşturuldu.
+ */
 
 //Standartlar deneme
 //  public Employee Employee { get; set; }
