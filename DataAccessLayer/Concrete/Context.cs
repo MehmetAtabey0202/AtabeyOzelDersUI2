@@ -12,7 +12,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-5FEF912\\SQLEXPRESS02; database=AtabeyDB; Integrated Security = true;"); 
+            optionsBuilder.UseSqlServer("server=.; database=AtabeyDB; Integrated Security = true;"); 
         }
 
         public DbSet<Area> Areas { get; set; }
