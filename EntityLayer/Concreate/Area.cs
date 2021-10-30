@@ -43,3 +43,16 @@ namespace EntityLayer.Concreate
 //public DateTime Update_Date { get; set; }
 //public bool IsDelete { get; set; }
 //public bool IsActive { get; set; }
+
+
+/*
+ * Mehmet tarafından oluşturuldu.
+ */
+/*
+ * Mehmet tarafından oluşturuldu.
+ */
+/*
+ * Mehmet tarafından oluşturuldu.
+/*
+ * Mehmet tarafından oluşturuldu.
+ */
