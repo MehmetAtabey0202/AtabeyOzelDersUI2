@@ -31,12 +31,8 @@ namespace EntityLayer.Concreate
         public ICollection<Province> Provinces { get; set; }
     }
 }
-/*
- * Deneme Mehmet Ekledi.ss
- */
-/*
- * jsjkjsskjsjk
- */
+
+
 //Standartlar deneme
 //  public Employee Employee { get; set; }
 //public int CreateBy_ID { get; set; }
